@@ -365,7 +365,7 @@ namespace QuickproPos.Utilities
                 product.Amount = 0;
             }
         }
-        public static void CalculationGraniteQuotation(this GreniteQuotation master, List<ProductView> products, CompanyView company)
+        public static void CalculationGraniteQuotation(this GraniteQuotation master, List<ProductView> products, CompanyView company)
         {
             decimal decTotalSquarFeet = 0;
             decimal decBoxQty = 0;

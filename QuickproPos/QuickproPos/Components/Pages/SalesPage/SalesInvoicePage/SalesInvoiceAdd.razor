@@ -1,6 +1,6 @@
 ﻿@page "/sales/{add}"
 @page "/sales/{add}/{id:int}"
-@inject GreniteService graniteService
+@inject GraniteService graniteService
 @inject TilesQuotationService tilesQuotationService
 @inject SalesInvoiceService salesInvoiceService
 @inject PaymentInService paymentinService
@@ -389,7 +389,7 @@
                 listLedger = await accountledgerService.GetAllAccountLedgersByIdAsync(26);
                 listTax = await taxService.GetAllTaxsAsync();
                 listWarehouse = await warehouseService.GetAllWarehousesAsync();
-                productList = await graniteService.GetAllByGreniteQuotationToSalesDetails(id);
+                productList = await graniteService.GetAllByGraniteQuotationToSalesDetails(id);
                 listProduct = await productService.GetAllProductsAsync();
                 // Calculate amounts for each product in the list
                 foreach (var product1 in productList)

@@ -86,8 +86,8 @@
         public decimal BoxQty { get; set; }
         public string Description { get; set; }
 
-        //GreniteQuotation
-        public int GreniteQuotationDetailsId { get; set; }
+        //GraniteQuotation
+        public int GraniteQuotationDetailsId { get; set; }
         public decimal MeasurementSrNo { get; set; }
         public decimal TotalSqFt { get; set; }
     }

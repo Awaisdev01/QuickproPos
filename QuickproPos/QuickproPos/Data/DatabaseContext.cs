@@ -44,8 +44,8 @@ namespace QuickproPos.Data
             await Database.CreateTableAsync<ReceiptDetails>();
             await Database.CreateTableAsync<TilesQuotationMaster>();
             await Database.CreateTableAsync<TilesQuotationDetails>();
-            await Database.CreateTableAsync<GreniteQuotation>();
-            await Database.CreateTableAsync<GreniteQuotationDetails>();
+            await Database.CreateTableAsync<GraniteQuotation>();
+            await Database.CreateTableAsync<GraniteQuotationDetails>();
             await Database.CreateTableAsync<Unit>();
             await Database.CreateTableAsync<Tax>();
             await Database.CreateTableAsync<ProductGroup>();

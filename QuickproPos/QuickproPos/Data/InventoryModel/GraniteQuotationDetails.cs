@@ -2,11 +2,11 @@
 
 namespace QuickproPos.Data.InventoryModel
 {
-    public class GreniteQuotationDetails
+    public class GraniteQuotationDetails
     {
         [PrimaryKey , AutoIncrement]
-        public int GreniteQuotationDetailsId { get; set; }
-        public int GreniteQuotationId { get; set; }
+        public int GraniteQuotationDetailsId { get; set; }
+        public int GraniteQuotationId { get; set; }
         public int ProductId { get; set; }
         public int UnitId { get; set; }
         public decimal Qty { get; set; }

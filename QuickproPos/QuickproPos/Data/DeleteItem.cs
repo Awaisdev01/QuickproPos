@@ -17,6 +17,6 @@ namespace QuickproPos.Data
         public int PurchaseOrderDetailsId { get; set; }
         public int SalesOrderDetailsId { get; set; }
         public int TilesQuotatinDetailsId { get; set; }
-        public int GreniteQuotationDetailsId { get; set; }
+        public int GraniteQuotationDetailsId { get; set; }
     }
 }

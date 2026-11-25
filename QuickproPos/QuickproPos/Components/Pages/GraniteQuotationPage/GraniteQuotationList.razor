@@ -1,5 +1,5 @@
 ﻿@page "/quotation/granite"
-@inject GreniteService greniteService
+@inject GraniteService greniteService
 @inject MudBlazor.ISnackbar Snackbar
 @inject IJSRuntime JsRuntime
 
@@ -48,7 +48,7 @@
                 </div>
 
                 <!-- Table Section -->
-                <MudTable Items="listGrenite" Dense="dense" Hover="hover">
+                <MudTable Items="listGranite" Dense="dense" Hover="hover">
                     <HeaderContent>
                         <MudTh>DATE</MudTh>
                         <MudTh>QUOTATION NO</MudTh>
@@ -69,13 +69,13 @@
                                 <i class="fas fa-bars me-1"></i>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/quotation/granite/details/@context.GreniteQuotationId">
+                                <a class="dropdown-item" href="/quotation/granite/details/@context.GraniteQuotationId">
                                     <i class="fas fa-eye"></i> View
                                 </a>
-                                <a class="dropdown-item" href="/quotation/granite/@context.GreniteQuotationId">
+                                <a class="dropdown-item" href="/quotation/granite/@context.GraniteQuotationId">
                                     <i class="fas fa-edit"></i> Edit
                                 </a>
-                                <a class="dropdown-item" href="/sales/granite/@context.GreniteQuotationId">
+                                <a class="dropdown-item" href="/sales/granite/@context.GraniteQuotationId">
                                     <i class="fas fa-edit"></i> Convert to sales invoice
                                 </a>
                                 <a class="dropdown-item text-danger" @onclick="() => Delete(context)">
@@ -96,7 +96,7 @@
 @code {
     private bool dense = true;
     private bool hover = true;
-    private List<GreniteQuotationMasterView> listGrenite = new();
+    private List<GraniteQuotationMasterView> listGranite = new();
     private DateTime fromDate { get; set; }
     private DateTime endDate { get; set; } 
 
@@ -111,7 +111,7 @@
     {
         try
         {
-            listGrenite = await greniteService.GreniteQuotationSearchAsync(fromDate, endDate);
+            listGranite = await greniteService.GraniteQuotationSearchAsync(fromDate, endDate);
         }
         catch (Exception ex)
         {
@@ -119,7 +119,7 @@
         }
     }
 
-    private async Task Delete(GreniteQuotationMasterView view)
+    private async Task Delete(GraniteQuotationMasterView view)
     {
         try
         {

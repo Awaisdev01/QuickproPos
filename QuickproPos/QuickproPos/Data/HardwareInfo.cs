@@ -1,6 +1,7 @@
-﻿using System.Management;
+#if WINDOWS
+using System.Management;
 
-public class HardwareInfo
+﻿public class HardwareInfo
 {
     // Get Processor ID
     public static string GetProcessorId()
@@ -70,3 +71,4 @@ public class HardwareInfo
         return $"{processorId}-{motherboardSerialNumber}-{biosSerialNumber}-{hardDriveSerialNumber}";
     }
 }
+#endif

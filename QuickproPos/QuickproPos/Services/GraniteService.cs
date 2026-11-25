@@ -6,11 +6,11 @@ using SQLite;
 
 namespace QuickproPos.Services
 {
-    public class GreniteService
+    public class GraniteService
     {
         private readonly SQLiteAsyncConnection _database;
 
-        public GreniteService(SQLiteAsyncConnection database)
+        public GraniteService(SQLiteAsyncConnection database)
         {
             _database = database;
         }
@@ -18,15 +18,15 @@ namespace QuickproPos.Services
         public async Task<bool> CheckNameAsync(string name)
         {
             // Query the database asynchronously
-            var query = await _database.Table<GreniteQuotation>()
+            var query = await _database.Table<GraniteQuotation>()
                                         .Where(progm => progm.QuotationNo == name)
                                         .CountAsync();
             return query > 0;
         }
-        public async Task<List<ProductView>> GetAllByGreniteQuotationMasterDetails(int GreniteQuotationId)
+        public async Task<List<ProductView>> GetAllByGraniteQuotationMasterDetails(int GraniteQuotationId)
         {
-            var tilesDetailsList = await _database.Table<GreniteQuotationDetails>()
-                                                      .Where(x => x.GreniteQuotationId == GreniteQuotationId)
+            var tilesDetailsList = await _database.Table<GraniteQuotationDetails>()
+                                                      .Where(x => x.GraniteQuotationId == GraniteQuotationId)
                                                       .ToListAsync();
 
             var products = await _database.Table<Product>().ToListAsync();
@@ -36,7 +36,7 @@ namespace QuickproPos.Services
                                    from product in productGroup.DefaultIfEmpty() // Handle cases where no matching product is found
                                    select new ProductView
                                    {
-                                       GreniteQuotationDetailsId = detail.GreniteQuotationDetailsId,
+                                       GraniteQuotationDetailsId = detail.GraniteQuotationDetailsId,
                                        ProductId = detail.ProductId,
                                        ProductName = product?.ProductName ?? "Unknown", // Default to "Unknown" if product is null
                                        ProductCode = product?.ProductCode ?? "N/A",   // Default to "N/A" if product is null
@@ -54,10 +54,10 @@ namespace QuickproPos.Services
 
             return productViewList;
         }
-        public async Task<List<ProductView>> GetAllByGreniteQuotationToSalesDetails(int GreniteQuotationId)
+        public async Task<List<ProductView>> GetAllByGraniteQuotationToSalesDetails(int GraniteQuotationId)
         {
-            var tilesDetailsList = await _database.Table<GreniteQuotationDetails>()
-                                                      .Where(x => x.GreniteQuotationId == GreniteQuotationId)
+            var tilesDetailsList = await _database.Table<GraniteQuotationDetails>()
+                                                      .Where(x => x.GraniteQuotationId == GraniteQuotationId)
                                                       .ToListAsync();
 
             // Query the Unit table
@@ -72,7 +72,7 @@ namespace QuickproPos.Services
                                    from product in productGroup.DefaultIfEmpty() // Handle cases where no matching product is found
                                    select new ProductView
                                    {
-                                       GreniteQuotationDetailsId = detail.GreniteQuotationDetailsId,
+                                       GraniteQuotationDetailsId = detail.GraniteQuotationDetailsId,
                                        ProductId = detail.ProductId,
                                        ProductName = product?.ProductName ?? "Unknown", // Default to "Unknown" if product is null
                                        ProductCode = product?.ProductCode ?? "N/A",   // Default to "N/A" if product is null
@@ -87,10 +87,10 @@ namespace QuickproPos.Services
 
             return productViewList;
         }
-        public async Task<List<ProductView>> GetAllByGreniteQuotationToSalesDetailsSum(int GreniteQuotationId)
+        public async Task<List<ProductView>> GetAllByGraniteQuotationToSalesDetailsSum(int GraniteQuotationId)
         {
-            var tilesDetailsList = await _database.Table<GreniteQuotationDetails>()
-                                                  .Where(x => x.GreniteQuotationId == GreniteQuotationId)
+            var tilesDetailsList = await _database.Table<GraniteQuotationDetails>()
+                                                  .Where(x => x.GraniteQuotationId == GraniteQuotationId)
                                                   .ToListAsync();
 
             var units = await _database.Table<Unit>().ToListAsync();
@@ -103,7 +103,7 @@ namespace QuickproPos.Services
                                    from product in productGroup.DefaultIfEmpty() // Handle cases where no matching product is found
                                    select new ProductView
                                    {
-                                       GreniteQuotationDetailsId = detail.GreniteQuotationDetailsId,
+                                       GraniteQuotationDetailsId = detail.GraniteQuotationDetailsId,
                                        ProductId = detail.ProductId,
                                        ProductName = product?.ProductName ?? "Unknown", // Default to "Unknown" if product is null
                                        ProductCode = product?.ProductCode ?? "N/A",   // Default to "N/A" if product is null
@@ -131,10 +131,10 @@ namespace QuickproPos.Services
             return groupedProductViewList;
         }
 
-        public async Task<List<GreniteQuotationMasterView>> GreniteQuotationSearchAsync(DateTime fromDate, DateTime toDate)
+        public async Task<List<GraniteQuotationMasterView>> GraniteQuotationSearchAsync(DateTime fromDate, DateTime toDate)
         {
             var quotationMasters = await _database
-    .Table<GreniteQuotation>()
+    .Table<GraniteQuotation>()
     .Where(p => p.Date >= fromDate && p.Date <= toDate)
     .ToListAsync();
 
@@ -150,9 +150,9 @@ namespace QuickproPos.Services
             var result = (from pm in quotationMasters
                           join iset in invoiceSettings on pm.VoucherTypeId equals iset.VoucherTypeId
                           join al in accountLedgers on pm.LedgerId equals al.LedgerId
-                          select new GreniteQuotationMasterView
+                          select new GraniteQuotationMasterView
                           {
-                              GreniteQuotationId = pm.GreniteQuotationId,
+                              GraniteQuotationId = pm.GraniteQuotationId,
                               QuotationNo = pm.QuotationNo,
                               Date = pm.Date,
                               TotalSqft = pm.TotalSqft,
@@ -169,29 +169,29 @@ namespace QuickproPos.Services
 
             return result;
         }
-        public async Task<GreniteQuotation> GetByIdAsync(int id)
+        public async Task<GraniteQuotation> GetByIdAsync(int id)
         {
-            return await _database.FindAsync<GreniteQuotation>(id);
+            return await _database.FindAsync<GraniteQuotation>(id);
         }
-        public async Task<int> SaveAsync(GreniteQuotation model)
+        public async Task<int> SaveAsync(GraniteQuotation model)
         {
 
             try
             {
                 await _database.InsertAsync(model);
-                int id = model.GreniteQuotationId;
+                int id = model.GraniteQuotationId;
 
                 if (id > 0)
                 {
                     var ledgerPostings = new List<LedgerPosting>();
                     var stockPostings = new List<StockPosting>();
-                    var GreniteQuotationDetails = new List<GreniteQuotationDetails>();
+                    var GraniteQuotationDetails = new List<GraniteQuotationDetails>();
 
                     foreach (var item in model.listOrder)
                     {
-                        var details = new GreniteQuotationDetails
+                        var details = new GraniteQuotationDetails
                         {
-                            GreniteQuotationId = model.GreniteQuotationId,
+                            GraniteQuotationId = model.GraniteQuotationId,
                             ProductId = item.ProductId,
                             UnitId = item.UnitId,
                             Qty = item.Qty,
@@ -204,12 +204,12 @@ namespace QuickproPos.Services
                             Description = item.Description
                         };
 
-                        GreniteQuotationDetails.Add(details); // Add to list for bulk insert
+                        GraniteQuotationDetails.Add(details); // Add to list for bulk insert
                     }
 
                     // Bulk insert SalesDetails and StockPostings
-                    await _database.InsertAllAsync(GreniteQuotationDetails);
-                    return model.GreniteQuotationId;  // Return GreniteQuotationId
+                    await _database.InsertAllAsync(GraniteQuotationDetails);
+                    return model.GraniteQuotationId;  // Return GraniteQuotationId
                 }
                 else
                 {
@@ -222,7 +222,7 @@ namespace QuickproPos.Services
                 throw new Exception("An error occurred while saving the data. Please try again.", ex);
             }
         }
-        public async Task<bool> UpdateAsync(GreniteQuotation model)
+        public async Task<bool> UpdateAsync(GraniteQuotation model)
         {
 
             try
@@ -231,12 +231,12 @@ namespace QuickproPos.Services
 
                 foreach (var item in model.listOrder)
                 {
-                    GreniteQuotationDetails details;
-                    if (item.GreniteQuotationDetailsId == 0)
+                    GraniteQuotationDetails details;
+                    if (item.GraniteQuotationDetailsId == 0)
                     {
-                        details = new GreniteQuotationDetails
+                        details = new GraniteQuotationDetails
                         {
-                            GreniteQuotationId = model.GreniteQuotationId,
+                            GraniteQuotationId = model.GraniteQuotationId,
                             ProductId = item.ProductId,
                             UnitId = item.UnitId,
                             Qty = item.Qty,
@@ -255,10 +255,10 @@ namespace QuickproPos.Services
                     }
                     else
                     {
-                        details = new GreniteQuotationDetails
+                        details = new GraniteQuotationDetails
                         {
-                            GreniteQuotationDetailsId = item.GreniteQuotationDetailsId,
-                            GreniteQuotationId = model.GreniteQuotationId,
+                            GraniteQuotationDetailsId = item.GraniteQuotationDetailsId,
+                            GraniteQuotationId = model.GraniteQuotationId,
                             ProductId = item.ProductId,
                             UnitId = item.UnitId,
                             Qty = item.Qty,
@@ -277,7 +277,7 @@ namespace QuickproPos.Services
 
                 foreach (var deleteItem in model.listDelete)
                 {
-                    var purchaseDetail = await _database.FindAsync<GreniteQuotationDetails>(deleteItem.GreniteQuotationDetailsId);
+                    var purchaseDetail = await _database.FindAsync<GraniteQuotationDetails>(deleteItem.GraniteQuotationDetailsId);
                     if (purchaseDetail != null)
                     {
                         await _database.DeleteAsync(purchaseDetail); // Deletes the SalesDetails record
@@ -291,12 +291,12 @@ namespace QuickproPos.Services
                 throw new Exception("An error occurred while saving the data. Please try again.", ex);
             }
         }
-        public async Task<bool> DeleteTilesQuotationAsync(GreniteQuotationMasterView model)
+        public async Task<bool> DeleteTilesQuotationAsync(GraniteQuotationMasterView model)
         {
             try
             {
-                var SalesDetailsToDelete = await _database.Table<GreniteQuotationDetails>()
-                                                             .Where(pd => pd.GreniteQuotationId == model.GreniteQuotationId)
+                var SalesDetailsToDelete = await _database.Table<GraniteQuotationDetails>()
+                                                             .Where(pd => pd.GraniteQuotationId == model.GraniteQuotationId)
                                                              .ToListAsync();
 
                 if (SalesDetailsToDelete.Any())
@@ -307,8 +307,8 @@ namespace QuickproPos.Services
                     }
                 }
 
-                var SalesMaster = await _database.Table<GreniteQuotation>()
-                                                     .FirstOrDefaultAsync(pm => pm.GreniteQuotationId == model.GreniteQuotationId);
+                var SalesMaster = await _database.Table<GraniteQuotation>()
+                                                     .FirstOrDefaultAsync(pm => pm.GraniteQuotationId == model.GraniteQuotationId);
 
                 if (SalesMaster != null)
                 {
@@ -328,7 +328,7 @@ namespace QuickproPos.Services
             // Prepare the query
             const string query = @"
         SELECT IFNULL(MAX(CAST(SerialNo AS INTEGER) + 1), 1) AS VoucherNo
-        FROM GreniteQuotation";
+        FROM GraniteQuotation";
 
             // Execute the query and get the result
             var result = await _database.ExecuteScalarAsync<string>(query);

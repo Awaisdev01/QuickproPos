@@ -97,8 +97,8 @@ namespace QuickproPos
             builder.Services.AddSingleton<TilesQuotationService>(sp =>
             new TilesQuotationService(sp.GetRequiredService<DatabaseContext>().GetConnection()));
 
-            builder.Services.AddSingleton<GreniteService>(sp =>
-            new GreniteService(sp.GetRequiredService<DatabaseContext>().GetConnection()));
+            builder.Services.AddSingleton<GraniteService>(sp =>
+            new GraniteService(sp.GetRequiredService<DatabaseContext>().GetConnection()));
 
             builder.Services.AddSingleton<ReportService>(sp =>
             new ReportService(sp.GetRequiredService<DatabaseContext>().GetConnection()));

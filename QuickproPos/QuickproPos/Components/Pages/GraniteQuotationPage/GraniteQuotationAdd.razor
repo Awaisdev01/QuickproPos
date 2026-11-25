@@ -1,6 +1,6 @@
 ﻿@page "/quotation/granite/add"
 @page "/quotation/granite/{id:int}"
-@inject GreniteService grentieService
+@inject GraniteService grentieService
 @inject InvoiceSettingService invoiceSettingService
 @inject UserService userService
 @inject CompanyService companyService
@@ -257,7 +257,7 @@
 @code {
     [Parameter]
     public int id { get; set; }
-    private GreniteQuotation master = new GreniteQuotation();
+    private GraniteQuotation master = new GraniteQuotation();
     List<AccountLedgerView> listLedger;
     List<ProductView> listProduct;
     ProductView product = new ProductView();
@@ -305,7 +305,7 @@
             {
                 master = await grentieService.GetByIdAsync(id);
                 listLedger = await accountledgerService.GetAllAccountLedgersByIdAsync(26);
-                productList = await grentieService.GetAllByGreniteQuotationMasterDetails(id);
+                productList = await grentieService.GetAllByGraniteQuotationMasterDetails(id);
                 listProduct = await productService.GetAllProductsAsync();
             }
         }
@@ -329,7 +329,7 @@
                 Rate = 0,
                 Amount = 0,
                 Description = string.Empty,
-                GreniteQuotationDetailsId = 0
+                GraniteQuotationDetailsId = 0
             };
         productList.Add(myItem);
     }
@@ -398,7 +398,7 @@
         {
             if (item.ProductId > 0)
             {
-                var details = new GreniteQuotationDetails
+                var details = new GraniteQuotationDetails
                     {
                         ProductId = item.ProductId,
                         Qty = item.Qty,
@@ -410,7 +410,7 @@
                         Rate = item.Rate,
                         Amount = item.Amount,
                         Description = item.Description,
-                        GreniteQuotationDetailsId = item.GreniteQuotationDetailsId
+                        GraniteQuotationDetailsId = item.GraniteQuotationDetailsId
                     };
                 master.listOrder.Add(details);
             }
@@ -437,9 +437,9 @@
         {
             if (item.ProductId > 0)
             {
-                var details = new GreniteQuotationDetails
+                var details = new GraniteQuotationDetails
                     {
-                        GreniteQuotationDetailsId = item.GreniteQuotationDetailsId,
+                        GraniteQuotationDetailsId = item.GraniteQuotationDetailsId,
                         ProductId = item.ProductId,
                         Qty = item.Qty,
                         UnitId = item.UnitId,
@@ -459,7 +459,7 @@
             DeleteItem details = new DeleteItem();
             if (items != null)
             {
-                details.GreniteQuotationDetailsId = items.GreniteQuotationDetailsId;
+                details.GraniteQuotationDetailsId = items.GraniteQuotationDetailsId;
                 master.listDelete.Add(details);
             }
 
@@ -471,7 +471,7 @@
         if (result == true)
         {
             Snackbar.Add("Granite quotation invoice updated successfully.", Severity.Success);
-            NavigationManager.NavigateTo($"/quotation/granite/details/{master.GreniteQuotationId}");
+            NavigationManager.NavigateTo($"/quotation/granite/details/{master.GraniteQuotationId}");
         }
         else
         {
@@ -512,7 +512,7 @@
             product.Rate = 0;
             product.Amount = 0;
             product.Description = string.Empty;
-            product.GreniteQuotationDetailsId = 0;
+            product.GraniteQuotationDetailsId = 0;
             product.CalculateGraniteQuotationAmounts(company);
             CalculateTotal();
             StateHasChanged();
@@ -550,7 +550,7 @@
     private async Task DeleteItem(int id)
     {
         var proTask = productList.FirstOrDefault(x => x.Id == id);
-        if (proTask.GreniteQuotationDetailsId == 0)
+        if (proTask.GraniteQuotationDetailsId == 0)
         {
             productList.Remove(proTask);
         }
@@ -560,7 +560,7 @@
             productList.Remove(proTask);
             var myHoldId = new DeleteItem
                 {
-                    GreniteQuotationDetailsId = proTask.GreniteQuotationDetailsId,
+                    GraniteQuotationDetailsId = proTask.GraniteQuotationDetailsId,
                 };
             deleteNo.Add(myHoldId);
         }

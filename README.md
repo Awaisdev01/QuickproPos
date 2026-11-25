@@ -31,7 +31,9 @@ dotnet workload install maccatalyst
 dotnet workload install maui-maccatalyst
 
 # 3. Build & run
-dotnet build QuickproPos/QuickproPos.csproj -t:Run \
+./scripts/run-mac.sh
+# or manually:
+dotnet build QuickproPos/QuickproPos/QuickproPos.csproj -t:Run \
   -f net8.0-maccatalyst -c Debug -p:TargetFrameworks=net8.0-maccatalyst
 ```
 
@@ -96,6 +98,8 @@ backup & restore) are in [`docs/images/`](docs/images/).
 ```
 QuickproPos/
 ├── QuickproPos.sln
+├── scripts/
+│   └── run-mac.sh               one-command macOS build + run
 ├── QuickproPos/
 │   ├── QuickproPos.csproj
 │   ├── MauiProgram.cs            app startup, DI registrations
@@ -105,20 +109,31 @@ QuickproPos/
 │   ├── wwwroot/                  CSS/JS/fonts for the Blazor UI
 │   ├── Resources/                images, fonts, splash, app icons
 │   └── Platforms/                Android / iOS / MacCatalyst / Tizen / Windows glue
-└── Documentation/                original setup & feature docs + screenshots
+└── docs/
+    └── images/                   27 module screenshots
 ```
 
 ## Review notes
 
-Honest findings from the review pass:
+Findings from the review pass — **fixed in this repo**:
 
-- ⚠️ `Data/HardwareInfo.cs` uses **WMI (`System.Management`)** — Windows-only APIs. It is
-  currently *dead code* (never called), so the Mac build is unaffected, but it should be
-  wrapped in `#if WINDOWS` or replaced with a cross-platform device-info API.
-- ⚠️ 611 build warnings (mostly platform-compatibility CA1416 notices) — normal for
-  cross-platform MAUI code but worth triaging.
-- ⚠️ A code-signing thumbprint is configured for Windows packaging — harmless for other
-  platforms, but it will fail Windows packaging without that certificate.
+- ✅ **Renamed `Grenite`/`Grantie` → `Granite`** across 13 files (services, models, pages,
+  folder names) — consistent naming throughout.
+- ✅ **Fixed `Services/DatabaseInitializerService .cs`** — space removed from the filename.
+- ✅ **Windows-only WMI code quarantined**: `Data/HardwareInfo.cs` is now wrapped in
+  `#if WINDOWS` — it's dead code on non-Windows platforms and no longer emits
+  platform-compatibility warnings.
+- ✅ **Windows packaging unblocked**: disabled the vendor's hardcoded MSIX code-signing
+  thumbprint — `dotnet publish` for Windows now works without their certificate
+  (set your own thumbprint to publish to the Microsoft Store).
+- ✅ **Removed junk `wwwroot/images/css/`** — a stray duplicate of `app.css`/bootstrap
+  that nothing referenced.
+- ✅ Added **`scripts/run-mac.sh`** — one-command build + run on macOS.
+
+Still open:
+
+- ⚠️ ~590 build warnings (mostly platform-compatibility CA1416 notices across the
+  shared codebase) — normal for cross-platform MAUI code but worth triaging.
 - ✅ Clean layered structure (Services / Data / Components) — easy to extend.
 - ✅ Builds and runs on MacCatalyst (Apple Silicon) out of the box with the setup above.
 

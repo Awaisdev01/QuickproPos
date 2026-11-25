@@ -35,9 +35,11 @@
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
         <TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
         <SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
-        <GenerateAppInstallerFile>True</GenerateAppInstallerFile>
-        <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
-        <PackageCertificateThumbprint>866B9C85135D101F764C2AF2E36E13C89EEF34F8</PackageCertificateThumbprint>
+        <!-- Windows MSIX packaging: signing disabled by default so `dotnet publish`
+             works without the original vendor's code-signing certificate.
+             Enable + set your own thumbprint when publishing to the Microsoft Store. -->
+        <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+        <AppxPackageSigningEnabled>False</AppxPackageSigningEnabled>
         <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
         <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
         <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
