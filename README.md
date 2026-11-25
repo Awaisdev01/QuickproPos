@@ -55,8 +55,9 @@ dotnet build QuickproPos/QuickproPos.csproj -t:Run \
 | 🎟️ **Extras** | Coupons, invoice settings, company profile, backup & restore |
 | 🖨️ **Printing** | Receipt printing service (Windows WMI paths — see review notes) |
 
-Screenshots from the original documentation: [`docs/images/`](docs/images/) —
-also included in the full [`Documentation/Index.html`](Documentation/Index.html).
+More module screenshots (customers, suppliers, payment in/out, cash register,
+backup & restore) and step-by-step setup guides are available on request —
+kept out of the repo to keep it lean.
 
 ## Screenshots
 
