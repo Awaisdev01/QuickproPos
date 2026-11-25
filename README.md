@@ -55,20 +55,20 @@ dotnet build QuickproPos/QuickproPos.csproj -t:Run \
 | 🎟️ **Extras** | Coupons, invoice settings, company profile, backup & restore |
 | 🖨️ **Printing** | Receipt printing service (Windows WMI paths — see review notes) |
 
-Screenshots from the original documentation: [`Documentation/images/`](Documentation/images/) —
+Screenshots from the original documentation: [`docs/images/`](docs/images/) —
 also included in the full [`Documentation/Index.html`](Documentation/Index.html).
 
 ## Screenshots
 
 | Dashboard | POS Billing | Reports |
 |:---:|:---:|:---:|
-| ![Dashboard](Documentation/images/dashboard.png) | ![POS](Documentation/images/pos.png) | ![Reports](Documentation/images/reports.png) |
+| ![Dashboard](docs/images/dashboard.png) | ![POS](docs/images/pos.png) | ![Reports](docs/images/reports.png) |
 
 | Sales Invoices | Products | Purchases |
 |:---:|:---:|:---:|
-| ![Sales](Documentation/images/sales.png) | ![Products](Documentation/images/product.png) | ![Purchases](Documentation/images/purchase.png) |
+| ![Sales](docs/images/sales.png) | ![Products](docs/images/product.png) | ![Purchases](docs/images/purchase.png) |
 
-More in [`Documentation/images/`](Documentation/images/) — customers, suppliers, payment in/out,
+More in [`docs/images/`](docs/images/) — customers, suppliers, payment in/out,
 cash register, backup & restore, and step-by-step setup guides.
 
 ## Tech stack
