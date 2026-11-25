@@ -56,8 +56,7 @@ dotnet build QuickproPos/QuickproPos.csproj -t:Run \
 | 🖨️ **Printing** | Receipt printing service (Windows WMI paths — see review notes) |
 
 More module screenshots (customers, suppliers, payment in/out, cash register,
-backup & restore) and step-by-step setup guides are available on request —
-kept out of the repo to keep it lean.
+backup & restore) are in [`docs/images/`](docs/images/).
 
 ## Screenshots
 
@@ -69,8 +68,21 @@ kept out of the repo to keep it lean.
 |:---:|:---:|:---:|
 | ![Sales](docs/images/sales.png) | ![Products](docs/images/product.png) | ![Purchases](docs/images/purchase.png) |
 
-More in [`docs/images/`](docs/images/) — customers, suppliers, payment in/out,
-cash register, backup & restore, and step-by-step setup guides.
+| Customers | Suppliers | Payment In |
+|:---:|:---:|:---:|
+| ![Customers](docs/images/customer.png) | ![Suppliers](docs/images/supplier.png) | ![Payment In](docs/images/paymentin.png) |
+
+| Payment Out | Cash Register | Cash in Hand |
+|:---:|:---:|:---:|
+| ![Payment Out](docs/images/paymentout.png) | ![Cash Register](docs/images/cashregister.png) | ![Cash in Hand](docs/images/cashinhand.png) |
+
+| Sales Return | Purchase Return | Backup & Restore |
+|:---:|:---:|:---:|
+| ![Sales Return](docs/images/salesreturn.png) | ![Purchase Return](docs/images/purchasereturn.png) | ![Backup](docs/images/backupandrestore.png) |
+
+| Product Add | Settings | |
+|:---:|:---:|:---:|
+| ![Product Add](docs/images/productadd.png) | ![Settings](docs/images/setting.png) | …all 27 screenshots in [`docs/images/`](docs/images/) |
 
 ## Tech stack
 
