@@ -58,6 +58,19 @@ dotnet build QuickproPos/QuickproPos.csproj -t:Run \
 Screenshots from the original documentation: [`Documentation/images/`](Documentation/images/) —
 also included in the full [`Documentation/Index.html`](Documentation/Index.html).
 
+## Screenshots
+
+| Dashboard | POS Billing | Reports |
+|:---:|:---:|:---:|
+| ![Dashboard](Documentation/images/dashboard.png) | ![POS](Documentation/images/pos.png) | ![Reports](Documentation/images/reports.png) |
+
+| Sales Invoices | Products | Purchases |
+|:---:|:---:|:---:|
+| ![Sales](Documentation/images/sales.png) | ![Products](Documentation/images/product.png) | ![Purchases](Documentation/images/purchase.png) |
+
+More in [`Documentation/images/`](Documentation/images/) — customers, suppliers, payment in/out,
+cash register, backup & restore, and step-by-step setup guides.
+
 ## Tech stack
 
 - **.NET 8 MAUI — Blazor Hybrid**: native shell + Razor UI rendered in a WebView (`wwwroot/`)
